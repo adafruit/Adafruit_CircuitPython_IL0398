@@ -28,7 +28,8 @@ display_bus = displayio.FourWire(spi, command=epd_dc, chip_select=epd_cs, reset=
                                  baudrate=1000000)
 time.sleep(1)
 
-display = adafruit_il0398.IL0398(display_bus, width=400, height=300, seconds_per_frame=20, highlight_color=0xff0000, busy_pin=epd_busy)
+display = adafruit_il0398.IL0398(display_bus, width=400, height=300, seconds_per_frame=20,
+                                 highlight_color=0xff0000, busy_pin=epd_busy)
 
 g = displayio.Group()
 

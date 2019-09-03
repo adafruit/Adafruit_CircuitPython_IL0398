@@ -45,7 +45,8 @@ import displayio
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_IL0398.git"
 
-# TODO: Try LUTs from: https://github.com/waveshare/e-Paper/blob/master/STM32/STM32-F103ZET6/User/e-Paper/EPD_4in2.c
+# TODO: Try LUTs from:
+# https://github.com/waveshare/e-Paper/blob/master/STM32/STM32-F103ZET6/User/e-Paper/EPD_4in2.c
 
 _START_SEQUENCE = (
     b"\x01\x04\x03\x00\x2b\x2b" # power setting
@@ -87,5 +88,6 @@ class IL0398(displayio.EPaperDisplay):
         super().__init__(bus, start_sequence, _STOP_SEQUENCE, **kwargs,
                          ram_width=400, ram_height=300,
                          busy_state=False,
-                         write_black_ram_command=write_black_ram_command, write_color_ram_command=write_color_ram_command,
+                         write_black_ram_command=write_black_ram_command,
+                         write_color_ram_command=write_color_ram_command,
                          color_bits_inverted=True, refresh_display_command=0x12)
