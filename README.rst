@@ -9,8 +9,8 @@ Introduction
     :target: https://discord.gg/nBQh6qu
     :alt: Discord
 
-.. image:: https://travis-ci.com/adafruit/Adafruit_CircuitPython_IL0398.svg?branch=master
-    :target: https://travis-ci.com/adafruit/Adafruit_CircuitPython_IL0398
+.. image:: https://github.com/adafruit/Adafruit_CircuitPython_IL0398/workflows/Build%20CI/badge.svg
+    :target: https://github.com/adafruit/Adafruit_CircuitPython_IL0398/actions
     :alt: Build Status
 
 CircuitPython displayio drivers for IL0398 driven e-paper displays
