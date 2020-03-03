@@ -49,16 +49,16 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_IL0398.git"
 # https://github.com/waveshare/e-Paper/blob/master/STM32/STM32-F103ZET6/User/e-Paper/EPD_4in2.c
 
 _START_SEQUENCE = (
-    b"\x01\x04\x03\x00\x2b\x2b" # power setting
-    b"\x06\x03\x17\x17\x17" # booster soft start
-    b"\x04\x80\xc8" # power on and wait 200 ms
-    b"\x00\x01\x0f" # panel setting
-    b"\x61\x04\x00\x00\x00\x00" # Resolution
+    b"\x01\x04\x03\x00\x2b\x2b"  # power setting
+    b"\x06\x03\x17\x17\x17"  # booster soft start
+    b"\x04\x80\xc8"  # power on and wait 200 ms
+    b"\x00\x01\x0f"  # panel setting
+    b"\x61\x04\x00\x00\x00\x00"  # Resolution
 )
 
 _STOP_SEQUENCE = (
-    b"\x50\x01\xf7" # CDI setting
-    b"\x02\x80\xf0" # Power off
+    b"\x50\x01\xf7"  # CDI setting
+    b"\x02\x80\xf0"  # Power off
     # TODO: Busy wait
     # b"\x07\x01\xa5" # Deep sleep
 )
@@ -66,15 +66,14 @@ _STOP_SEQUENCE = (
 # pylint: disable=too-few-public-methods
 class IL0398(displayio.EPaperDisplay):
     """IL0398 driver"""
+
     def __init__(self, bus, **kwargs):
         start_sequence = bytearray(_START_SEQUENCE)
 
         width = kwargs["width"]
         height = kwargs["height"]
         if "rotation" in kwargs and kwargs["rotation"] % 180 != 0:
-            w = width
-            width = height
-            height = w
+            width, height = height, width
         start_sequence[-4] = (width >> 8) & 0xFF
         start_sequence[-3] = width & 0xFF
         start_sequence[-2] = (height >> 8) & 0xFF
@@ -85,9 +84,16 @@ class IL0398(displayio.EPaperDisplay):
         else:
             write_color_ram_command = 0x10
             write_black_ram_command = 0x13
-        super().__init__(bus, start_sequence, _STOP_SEQUENCE, **kwargs,
-                         ram_width=400, ram_height=300,
-                         busy_state=False,
-                         write_black_ram_command=write_black_ram_command,
-                         write_color_ram_command=write_color_ram_command,
-                         color_bits_inverted=True, refresh_display_command=0x12)
+        super().__init__(
+            bus,
+            start_sequence,
+            _STOP_SEQUENCE,
+            **kwargs,
+            ram_width=400,
+            ram_height=300,
+            busy_state=False,
+            write_black_ram_command=write_black_ram_command,
+            write_color_ram_command=write_color_ram_command,
+            color_bits_inverted=True,
+            refresh_display_command=0x12
+        )
