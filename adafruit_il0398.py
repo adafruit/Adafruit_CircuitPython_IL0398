@@ -95,5 +95,5 @@ class IL0398(displayio.EPaperDisplay):
             write_black_ram_command=write_black_ram_command,
             write_color_ram_command=write_color_ram_command,
             color_bits_inverted=True,
-            refresh_display_command=0x12
+            refresh_display_command=0x12,
         )
