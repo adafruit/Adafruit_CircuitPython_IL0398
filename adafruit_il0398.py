@@ -50,7 +50,7 @@ _STOP_SEQUENCE = (
 class IL0398(displayio.EPaperDisplay):
     """IL0398 driver"""
 
-    def __init__(self, bus, **kwargs):
+    def __init__(self, bus: displayio.FourWire, **kwargs) -> None:
         start_sequence = bytearray(_START_SEQUENCE)
 
         width = kwargs["width"]
