@@ -46,6 +46,7 @@ _STOP_SEQUENCE = (
     # b"\x07\x01\xa5" # Deep sleep
 )
 
+
 # pylint: disable=too-few-public-methods
 class IL0398(displayio.EPaperDisplay):
     """IL0398 driver"""
