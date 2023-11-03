@@ -71,6 +71,7 @@ Usage Example
     import time
     import board
     import displayio
+    import fourwire
     import adafruit_il0398
 
     displayio.release_displays()
@@ -82,7 +83,7 @@ Usage Example
     epd_reset = board.D5
     epd_busy = board.D6
 
-    display_bus = displayio.FourWire(spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset,
+    display_bus = fourwire.FourWire(spi, command=epd_dc, chip_select=epd_cs, reset=epd_reset,
                                      baudrate=1000000)
     time.sleep(1)
 
@@ -103,7 +104,7 @@ Usage Example
 
     g.append(t)
 
-    display.show(g)
+    display.root_group = g
 
     display.refresh()
 
