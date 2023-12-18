@@ -23,7 +23,13 @@ Implementation Notes
 
 """
 
-import displayio
+# Support both 8.x.x and 9.x.x. Change when 8.x.x is discontinued as a stable release.
+try:
+    from fourwire import FourWire
+    from epaperdisplay import EPaperDisplay
+except ImportError:
+    from displayio import FourWire
+    from displayio import EPaperDisplay
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_IL0398.git"
@@ -48,10 +54,10 @@ _STOP_SEQUENCE = (
 
 
 # pylint: disable=too-few-public-methods
-class IL0398(displayio.EPaperDisplay):
+class IL0398(EPaperDisplay):
     """IL0398 driver"""
 
-    def __init__(self, bus: displayio.FourWire, **kwargs) -> None:
+    def __init__(self, bus: FourWire, **kwargs) -> None:
         start_sequence = bytearray(_START_SEQUENCE)
 
         width = kwargs["width"]
