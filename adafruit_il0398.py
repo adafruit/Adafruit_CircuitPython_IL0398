@@ -23,13 +23,15 @@ Implementation Notes
 
 """
 
-# Support both 8.x.x and 9.x.x. Change when 8.x.x is discontinued as a stable release.
+from epaperdisplay import EPaperDisplay
+
 try:
+    import typing
+
     from fourwire import FourWire
-    from epaperdisplay import EPaperDisplay
 except ImportError:
-    from displayio import FourWire
-    from displayio import EPaperDisplay
+    pass
+
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_IL0398.git"
